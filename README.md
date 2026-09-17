@@ -1,6 +1,8 @@
+![Agent Farm — pixel-art skill crops and native terminal huts](docs/assets/agent-farm-banner.png)
+
 # Agent Farm website
 
-The Agent Farm landing page, field guides, and Nextra documentation. Next.js 16
+The [Agent Farm](https://github.com/dcouple/agent-farm) landing page, field guides, and Nextra documentation. Next.js 16
 exports the site to static files for Firebase Hosting.
 
 ## Develop
