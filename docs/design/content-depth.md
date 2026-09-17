@@ -55,7 +55,7 @@ and `/llms-full.txt` from the complete sitemap inventory.
 - Visually inspected desktop guide, mobile configuration, comparison table,
   existing landing hero, and share image.
 - Verified copy success feedback, mobile menu expansion, and Escape dismissal.
-- Opened all five local pages in the user's browser. Changes remain local.
+- Opened all five local pages in the user's browser for the initial preview.
 
 ## Nextra and AI verification
 
