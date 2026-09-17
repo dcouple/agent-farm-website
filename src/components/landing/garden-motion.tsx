@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 /** Small decorative layers; CSS does the motion, JS only controls playback. */
 export function GardenMotion() {
   const garden = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const element = garden.current;
@@ -13,15 +12,13 @@ export function GardenMotion() {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
     const update = () => {
-      element.dataset.running = String(visible && !document.hidden && !preference.matches && !paused);
-      element.dataset.reduced = String(preference.matches);
+      element.dataset.running = String(visible && !document.hidden && !preference.matches);
     };
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       update();
     });
     observer.observe(element);
-    element.dataset.ready = "true";
     preference.addEventListener("change", update);
     document.addEventListener("visibilitychange", update);
     update();
@@ -30,7 +27,7 @@ export function GardenMotion() {
       preference.removeEventListener("change", update);
       document.removeEventListener("visibilitychange", update);
     };
-  }, [paused]);
+  }, []);
 
   return (
     <div className="garden-motion" ref={garden}>
@@ -49,10 +46,6 @@ export function GardenMotion() {
         <span className="garden-pollen garden-pollen-two" />
         <span className="garden-pollen garden-pollen-three" />
       </div>
-      <button className="garden-toggle" type="button" onClick={() => setPaused((value) => !value)}>
-        <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>
-        {paused ? "Resume breeze" : "Pause breeze"}
-      </button>
     </div>
   );
 }
