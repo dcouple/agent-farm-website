@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## README artwork
+
+Follow `docs/assets/visual-style.md` for README illustrations. Use this repository's banner as the image reference, preserving the shared dcouple pixel-art language and the project-specific setting and colors.

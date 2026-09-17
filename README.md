@@ -1,3 +1,9 @@
+![Agent Farm — pixel-art skill crops and native terminal huts](docs/assets/agent-farm-banner.png)
+
+# Agent Farm website
+
+The landing-page repository for [Agent Farm](https://github.com/dcouple/agent-farm).
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
