@@ -2,6 +2,7 @@ import Image from "next/image";
 import imageAssets from "@/components/landing/image-assets.json";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { FieldLines } from "@/components/landing/artwork";
+import { GardenMotion } from "@/components/landing/garden-motion";
 import {
   CopyButton,
   ScrollReveals,
@@ -124,6 +125,7 @@ export default function Home() {
                     draggable={false}
                   />
                 </picture>
+                <GardenMotion />
                 <div
                   className="mobile-screen-text select-none"
                   aria-hidden="true"
