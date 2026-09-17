@@ -25,18 +25,51 @@ Replace the existing root parking/URL redirect record resolving to `162.255.119.
 
 ## Deploy updates
 
+`.github/workflows/website.yml` runs lint, build/TypeScript, and `docs:check` on
+pull requests and pushes to `main`. After a successful main build, a separate job
+downloads the verified `out/` artifact and deploys it to Firebase Hosting.
+`workflow_dispatch` can redeploy `main`. Pull requests run checks only.
+
+The final job runs `python3 scripts/check-live.py`, comparing all 16 public HTML
+pages, Markdown exports, AI indexes, sitemap, robots, and the social image at
+`https://getagentfarm.com` with the artifact. A mismatch fails the deployment run.
+Deployments are serialized per branch and use actions pinned to commit hashes.
+
+### GitHub authentication
+
+Google Workload Identity Federation exchanges GitHub's identity token for a
+short-lived service account token. GitHub stores no service account key.
+
+- Pool: `projects/146232287470/locations/global/workloadIdentityPools/github-website`
+- Provider: `github` (GitHub's OIDC issuer)
+- Service account: `github-hosting@dcouple-agent-farm.iam.gserviceaccount.com`
+- Project roles: `roles/firebasehosting.admin` and `roles/serviceusage.serviceUsageConsumer`
+- Service account impersonation: `roles/iam.workloadIdentityUser`, restricted to
+  repository ID `1373776482` in this pool.
+- Provider conditions require repository ID `1373776482`, owner ID `264294815`,
+  ref `refs/heads/main`, and workflow
+  `dcouple/agent-farm-website/.github/workflows/website.yml@refs/heads/main`.
+
+The workflow passes the temporary access token as `FIREBASE_ACCESS_TOKEN` to the
+existing deployment script. These settings are scoped to the website project.
+
+### Manual deployment
+
 Using the authenticated `parsa@dcouple.ai` gcloud account:
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm lint
 pnpm build
+pnpm docs:check
 python3 scripts/deploy-hosting.py
+python3 scripts/check-live.py
 ```
 
 The deploy script uploads only `out/`, finalizes a version, then releases it. It uses short-lived gcloud credentials in memory and does not change gcloud's default project or persist tokens. The same `firebase.json` configuration can also be deployed with the official Firebase CLI when separately authenticated.
 
-Rollback to a prior release through the Hosting console. No GitHub automatic deployment has been configured.
+Rollback to a prior release through the Hosting console. To keep a rollback in
+place, revert the corresponding code change before the next main deployment.
 
 ## Image delivery
 
@@ -76,4 +109,4 @@ Lighthouse 13.4.1 measured the optimized deployment immediately before the badge
 
 Mobile: FCP 1.0s, LCP 2.8s, TBT 70ms, CLS 0. Desktop: FCP 0.3s, LCP 0.6s, TBT 0ms, CLS 0. Reports: `docs/qa/lighthouse-mobile.html`, `docs/qa/lighthouse-desktop.html`, and `docs/qa/lighthouse-summary.json`.
 
-After the user updated DNS, authoritative queries to `dns1.registrar-servers.com` confirmed all three records exactly match the table above, and the SPF record remains intact. At the last check Firebase's cached domain status still showed ownership/host validation and certificate provisioning pending; local recursive DNS still returned the prior parking records. No further DNS changes are required on current evidence. Firebase will complete validation automatically as DNS propagates.
+After the user updated DNS, authoritative queries to `dns1.registrar-servers.com` confirmed all three records exactly match the table above, and the SPF record remains intact. Firebase subsequently confirmed active ownership and hosting while its certificate was validating. At 03:03 UTC on September 17, 2026, `curl -I https://getagentfarm.com` verified HTTPS successfully and returned HTTP 200. Certificate provisioning has completed for the primary domain.

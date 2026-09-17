@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deploy the built out/ directory using the signed-in dcouple gcloud account.
+"""Deploy out/ using a short-lived CI token or the signed-in dcouple account.
 
 Run pnpm build first. Uses the Firebase Hosting REST deployment protocol:
 https://firebase.google.com/docs/hosting/api-deploy
@@ -7,6 +7,7 @@ https://firebase.google.com/docs/hosting/api-deploy
 import gzip
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import urllib.error
@@ -26,7 +27,7 @@ def main():
     output = ROOT / hosting["public"]
     if not (output / "index.html").is_file():
         raise SystemExit("Missing out/index.html. Run pnpm build first.")
-    token = subprocess.check_output(
+    token = os.environ.get("FIREBASE_ACCESS_TOKEN") or subprocess.check_output(
         ["gcloud", "auth", "print-access-token", f"--account={ACCOUNT}"], text=True
     ).strip()
 

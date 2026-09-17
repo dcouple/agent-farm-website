@@ -1,0 +1,77 @@
+:root {
+  --nextra-primary-hue: 153deg;
+  --nextra-primary-saturation: 35%;
+  --nextra-primary-lightness: 30%;
+  --nextra-bg: 248, 245, 237;
+}
+html {
+  font-family: var(--font-docs-sans), sans-serif;
+}
+body {
+  margin: 0;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-docs-serif), Georgia, serif;
+  letter-spacing: -0.035em;
+}
+pre,
+code,
+kbd {
+  font-family: var(--font-docs-mono), monospace;
+}
+.docs-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-docs-serif), Georgia, serif;
+  font-size: 23px;
+  white-space: nowrap;
+}
+.docs-logo svg {
+  color: #b27a25;
+}
+.docs-logo small {
+  font-family: var(--font-docs-sans), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  border-left: 1px solid #92a087;
+  margin-left: 12px;
+  padding-left: 12px;
+  opacity: 0.7;
+}
+.docs-nav-link {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.docs-page-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 28px 0;
+  padding-top: 18px;
+  border-top: 1px solid #87998055;
+  font-size: 12px;
+}
+.docs-page-links a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+footer > div {
+  gap: 24px;
+}
+.dark {
+  --nextra-bg: 20, 44, 37;
+  --nextra-primary-lightness: 70%;
+}
+@media (max-width: 420px) {
+  .docs-logo {
+    font-size: 20px;
+  }
+  .docs-nav-link {
+    display: none;
+  }
+}
+.docs-download-link { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

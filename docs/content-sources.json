@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/dcouple/agent-farm",
+  "commit": "19f1fba8ef12050eef39c1b44e725c697b57b87b",
+  "reviewedAt": "2026-09-16",
+  "sources": ["README.md", "CONFIGURATION.md", "docs/operations.md", "src/commands.ts", "plugins/dcouple/agents/planner.md", "plugins/dcouple/agents/worker.md", "plugins/dcouple/plugin.yaml"],
+  "approach": "Task-oriented adaptations with links to primary sources. Why Agent Farm is an original editorial introduction based on documented behavior."
+}
