@@ -1,0 +1,22 @@
+{
+  "workbench": {
+    "768": {
+      "src": "/images/workbench-768-255e8823b0.webp",
+      "bytes": 98256
+    },
+    "1254": {
+      "src": "/images/workbench-1254-7426a089c2.webp",
+      "bytes": 163362
+    }
+  },
+  "configuration": {
+    "768": {
+      "src": "/images/configuration-768-712dc080d0.webp",
+      "bytes": 77958
+    },
+    "1400": {
+      "src": "/images/configuration-1400-b8f6d80e68.webp",
+      "bytes": 188624
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "mobile": {
+    "url": "https://dcouple-agent-farm.web.app/",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-17T02:18:20.281Z",
+    "scores": {
+      "performance": 95,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "1.0\u00a0s",
+      "largest-contentful-paint": "2.8\u00a0s",
+      "total-blocking-time": "70\u00a0ms",
+      "cumulative-layout-shift": "0"
+    }
+  },
+  "desktop": {
+    "url": "https://dcouple-agent-farm.web.app/",
+    "lighthouseVersion": "13.4.1",
+    "fetchTime": "2026-09-17T02:18:59.631Z",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "0.3\u00a0s",
+      "largest-contentful-paint": "0.6\u00a0s",
+      "total-blocking-time": "0\u00a0ms",
+      "cumulative-layout-shift": "0"
+    }
+  }
+}
