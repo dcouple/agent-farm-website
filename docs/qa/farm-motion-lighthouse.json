@@ -1,0 +1,76 @@
+{
+  "method": "Lighthouse 13.4.1, sequential runs against gzip-served production exports on localhost; one run per device per version.",
+  "baseline_commit": "c92613fa320f5ff58ef611e54bb6f8e7e9b17afb",
+  "limitations": [
+    "Scores vary between runs and environments.",
+    "Both desktop runs recorded a local-server /guide prefetch 404, lowering Best Practices to 96; production uses Firebase clean URLs."
+  ],
+  "baseline-mobile": {
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100,
+      "agentic-browsing": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "0.8\u00a0s",
+      "largest-contentful-paint": "3.2\u00a0s",
+      "total-blocking-time": "20\u00a0ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "0.8\u00a0s"
+    },
+    "non_composited_animation_failures": 0
+  },
+  "motion-mobile": {
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100,
+      "agentic-browsing": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "0.9\u00a0s",
+      "largest-contentful-paint": "3.2\u00a0s",
+      "total-blocking-time": "20\u00a0ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "0.9\u00a0s"
+    },
+    "non_composited_animation_failures": 0
+  },
+  "baseline-desktop": {
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100,
+      "agentic-browsing": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "0.2\u00a0s",
+      "largest-contentful-paint": "0.7\u00a0s",
+      "total-blocking-time": "0\u00a0ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "0.2\u00a0s"
+    },
+    "non_composited_animation_failures": 0
+  },
+  "motion-desktop": {
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100,
+      "agentic-browsing": 100
+    },
+    "metrics": {
+      "first-contentful-paint": "0.2\u00a0s",
+      "largest-contentful-paint": "0.7\u00a0s",
+      "total-blocking-time": "0\u00a0ms",
+      "cumulative-layout-shift": "0",
+      "speed-index": "0.2\u00a0s"
+    },
+    "non_composited_animation_failures": 0
+  }
+}

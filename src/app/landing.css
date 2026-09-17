@@ -1,6 +1,8 @@
 /* Field Notes — forest, paper, warm ink, and a little room to grow. */
 :root {
   --forest: #183c32;
+  --ease-grow: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-breeze: cubic-bezier(0.77, 0, 0.175, 1);
   --forest-deep: #123027;
   --paper: #f8f5ed;
   --ink: #1c302e;
@@ -114,9 +116,11 @@ pre:focus-visible {
     box-shadow 0.18s,
     background 0.18s;
 }
-.button:hover {
-  transform: translate(-1px, -2px);
-  box-shadow: 3px 4px 0 #102921;
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    transform: translate(-1px, -2px);
+    box-shadow: 3px 4px 0 #102921;
+  }
 }
 .button:active {
   transform: translate(1px, 1px);
@@ -1979,4 +1983,82 @@ code {
 @media (min-width: 761px) and (max-width: 1100px) {
   .footer-content { flex-wrap: wrap; }
   .site-footer nav { width: 100%; margin-left: 0; padding-top: 12px; border-top: 1px solid var(--rule); }
+}
+
+/* A breeze at the edge of the workbench. All moving layers stay small. */
+.garden-motion,
+.garden-details {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.garden-sprig {
+  position: absolute;
+  width: 6%;
+  height: auto;
+  transform-origin: 50% 100%;
+}
+.garden-sprig-left { left: 6%; bottom: 10%; }
+.garden-sprig-right { right: 8%; bottom: 35%; width: 5%; }
+.garden-pollen {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #e7ce86;
+  opacity: 0;
+}
+.garden-pollen-one { left: 24%; top: 35%; }
+.garden-pollen-two { left: 77%; top: 43%; }
+.garden-pollen-three { left: 65%; top: 21%; width: 2px; height: 2px; }
+.garden-toggle {
+  display: none;
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid #78906c;
+  border-radius: 5px;
+  background: #183c32;
+  color: #e4ebd6;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.garden-motion[data-ready="true"][data-reduced="false"] .garden-toggle { display: inline-flex; }
+.garden-toggle:hover { color: #f4d28a; border-color: #edc362; }
+@media (prefers-reduced-motion: no-preference) {
+  .garden-sprig { animation: garden-sway 7s var(--ease-breeze) infinite; }
+  .garden-sprig-right { animation-duration: 9s; animation-delay: -3s; }
+  .garden-pollen { animation: garden-drift 9s linear infinite; }
+  .garden-pollen-two { animation-delay: -3s; animation-duration: 11s; }
+  .garden-pollen-three { animation-delay: -6s; animation-duration: 13s; }
+  .garden-motion .garden-sprig,
+  .garden-motion .garden-pollen { animation-play-state: paused; }
+  .garden-motion[data-running="true"] .garden-sprig,
+  .garden-motion[data-running="true"] .garden-pollen { animation-play-state: running; }
+}
+@keyframes garden-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes garden-drift {
+  0% { opacity: 0; transform: translate(0, 8px); }
+  20% { opacity: 0.55; }
+  70% { opacity: 0.4; }
+  100% { opacity: 0; transform: translate(18px, -22px); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .site-header .wordmark svg,
+  .site-footer .wordmark svg {
+    transform-origin: 50% 100%;
+    transition: transform 250ms var(--ease-grow);
+  }
+  .wordmark:hover svg { transform: rotate(-7deg); }
+  .hero-actions .button svg { transition: transform 180ms var(--ease-grow); }
+  .hero-actions .button:hover svg { transform: translateX(3px); }
 }
