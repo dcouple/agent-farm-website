@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Copy, Menu, X } from "lucide-react";
 
@@ -91,11 +92,15 @@ export function MobileNav({ home = false }: { home?: boolean }) {
         }}
       >
         <a href="/guide">Field guide</a>
+        <Link href="/docs">Docs</Link>
         <a href="/configuration">Configuration</a>
         <a href="/compare">Compare</a>
         <a href="/resources">Resources</a>
         <a href="https://github.com/dcouple/agent-farm">GitHub ↗</a>
-        <a className="button button-primary" href={home ? "#get-started" : "/#get-started"}>
+        <a
+          className="button button-primary"
+          href={home ? "#get-started" : "/#get-started"}
+        >
           Get started <ArrowRight size={16} aria-hidden="true" />
         </a>
       </nav>
@@ -105,7 +110,12 @@ export function MobileNav({ home = false }: { home?: boolean }) {
 
 const profiles = ["planner", "implementer", "reviewer"];
 type DemoStep =
-  "profile" | "workspace" | "directory" | "building" | "launched" | "codex";
+  | "profile"
+  | "workspace"
+  | "directory"
+  | "building"
+  | "launched"
+  | "codex";
 
 export function TerminalDemo() {
   const [step, setStep] = useState<DemoStep>("profile");

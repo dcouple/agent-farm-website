@@ -1,17 +1,25 @@
 import Image from "next/image";
 import imageAssets from "@/components/landing/image-assets.json";
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react";
-import { FarmMark, FieldLines } from "@/components/landing/artwork";
+import { FieldLines } from "@/components/landing/artwork";
 import {
   CopyButton,
-  MobileNav,
   ScrollReveals,
   TerminalDemo,
 } from "@/components/landing/interactions";
 import { CodeBlock } from "@/components/landing/code-block";
 
+import { SiteHeader, SiteFooter } from "@/components/site-chrome";
+import { pageMetadata, siteUrl } from "@/lib/site";
+
+export const metadata = pageMetadata(
+  "Harness Configurator for Claude Code & Codex",
+  "Save profiles with the right models, skills, and project tools. Launch Claude Code or Codex in your native terminal with Agent Farm.",
+  "/",
+);
+
 const repository = "https://github.com/dcouple/agent-farm";
-const configuration = `${repository}/blob/main/CONFIGURATION.md`;
+
 const install = `git clone https://github.com/dcouple/agent-farm.git
 cd agent-farm
 pnpm install --frozen-lockfile && pnpm build
@@ -30,28 +38,32 @@ export default function Home() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Agent Farm",
+            url: siteUrl,
+            image: `${siteUrl}/opengraph-image.png`,
+            description:
+              "Save agent profiles, shared skills, and workspace connections. Launch Claude Code or Codex in your native terminal.",
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "macOS, Linux",
+            isAccessibleForFree: true,
+            sameAs: [repository],
+            author: {
+              "@type": "Person",
+              name: "dcouple",
+              url: "https://github.com/dcouple",
+            },
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
       <ScrollReveals />
       <div className="hero-shell">
-        <header className="site-header container">
-          <a className="wordmark" href="#" aria-label="Agent Farm home">
-            <FarmMark />
-            Agent Farm
-          </a>
-          <nav className="desktop-nav" aria-label="Main navigation">
-            <a href="#how-it-works">How it works</a>
-
-            <a href={repository}>
-              GitHub <ArrowUpRight size={14} aria-hidden="true" />
-            </a>
-            <a
-              href="#get-started"
-              className="button button-primary button-small"
-            >
-              Get started <ArrowRight size={17} aria-hidden="true" />
-            </a>
-          </nav>
-          <MobileNav />
-        </header>
+        <SiteHeader home />
         <main id="main">
           <section className="hero container" aria-labelledby="hero-title">
             <div className="hero-copy">
@@ -112,7 +124,10 @@ export default function Home() {
                     draggable={false}
                   />
                 </picture>
-                <div className="mobile-screen-text select-none" aria-hidden="true">
+                <div
+                  className="mobile-screen-text select-none"
+                  aria-hidden="true"
+                >
                   <span>$ agent-farm</span>
                   <span>› planner</span>
                   <span> implementer</span>
@@ -204,22 +219,7 @@ export default function Home() {
           </section>
         </main>
       </div>
-      <footer className="site-footer">
-        <div className="container footer-content">
-          <a href="#" className="wordmark">
-            <FarmMark />
-            Agent Farm
-          </a>
-          <p>
-            Made with care by <a href="https://github.com/dcouple">dcouple</a>.
-          </p>
-          <nav aria-label="Footer navigation">
-            <a href={repository}>GitHub</a>
-            <a href={configuration}>Docs</a>
-            <a href="https://github.com/dcouple/skills">Skills</a>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

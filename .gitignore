@@ -43,3 +43,11 @@ next-env.d.ts
 # local deployment tooling
 .firebase/
 __pycache__/
+
+# Generated documentation search index
+/public/_pagefind/
+
+# Generated AI exports (rebuilt from the static site)
+/public/raw/
+/public/llms.txt
+/public/llms-full.txt
