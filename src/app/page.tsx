@@ -217,14 +217,55 @@ agent-farm init`}</CodeBlock>
         </div>
       </section>
 
-      {/* Power user */}
+      {/* Workspaces */}
       <section className="py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <h2 className="text-2xl font-bold tracking-tight mb-4">
+            Connect your tools
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            A workspace wires MCP connections — Linear, Sentry, PostHog,
+            databases — into any profile you launch with it. Create one
+            interactively or write a YAML file.
+          </p>
+          <CodeBlock>{`# Create a workspace interactively
+agent-farm
+→ + Create new workspace
+
+# Or write ~/.config/agent-farm/workspaces/bloomtext.yaml:
+connections:
+  linear:
+    type: mcp
+    url: https://mcp.linear.app/sse
+    auth: native
+  sentry:
+    type: mcp
+    url: https://mcp.sentry.dev/sse
+    auth: native`}</CodeBlock>
+          <p className="text-muted-foreground mt-6 mb-4">
+            Authenticate each connection once, then launch with the workspace:
+          </p>
+          <CodeBlock>{`# Sign in to each MCP (once per harness)
+agent-farm mcp login linear --workspace bloomtext --harness codex
+agent-farm mcp login sentry --workspace bloomtext --harness codex
+
+# Launch with the workspace attached
+agent-farm run astra-planner --workspace bloomtext`}</CodeBlock>
+          <p className="text-sm text-muted-foreground mt-4">
+            The same workspace works with any profile.
+            Run <code className="text-xs bg-muted px-1 py-0.5 rounded">agent-farm help mcp</code> for details.
+          </p>
+        </div>
+      </section>
+
+      {/* Power user */}
+      <section className="py-20 bg-muted/30">
         <div className="mx-auto max-w-3xl px-6">
           <h2 className="text-2xl font-bold tracking-tight mb-6">
             For power users
           </h2>
           <CodeBlock>{`agent-farm run planner --directory ~/repos/my-app
-agent-farm run implementer --workspace my-project \\
+agent-farm run implementer --workspace bloomtext \\
   --message "Fix the failing tests"`}</CodeBlock>
           <p className="text-sm text-muted-foreground mt-4">
             Run <code className="text-xs bg-muted px-1 py-0.5 rounded">agent-farm help run</code> for
